@@ -24,41 +24,31 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(glm)
 
-# --- Dear ImGui (UI Library) ---
-FetchContent_Declare(
-    imgui
-    GIT_REPOSITORY https://github.com/ocornut/imgui.git
-    GIT_TAG        docking
-)
-FetchContent_MakeAvailable(imgui)
+# --- OpenGL (cross-platform) ---
+find_package(OpenGL REQUIRED)
 
 # --- 3. INCLUDE DIRECTORIES ---
 include_directories(common common/glad)
 
 # Adding compile units to executable
 add_executable(${PROJECT_NAME}
-	src/glad.c 
-	src/CS247_prog.cpp
-	src/glslprogram.cpp
-	src/vboquad.cpp
-	# --- ImGui Source Files ---
-    ${imgui_SOURCE_DIR}/imgui.cpp
-    ${imgui_SOURCE_DIR}/imgui_draw.cpp
-    ${imgui_SOURCE_DIR}/imgui_widgets.cpp
-    ${imgui_SOURCE_DIR}/imgui_tables.cpp
-    ${imgui_SOURCE_DIR}/backends/imgui_impl_glfw.cpp
-    ${imgui_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp
+    src/glad.c
+    src/CS247_prog.cpp
+    src/glslprogram.cpp
+    src/vboquad.cpp
 )
 
-
-# Set project assignment as startup project in Visual Studio
-set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT assignment_3)
+# Pass the project source dir to the program so it can find shaders/data
+# regardless of the build directory.
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+    PROJECT_SOURCE_DIR_STR="${CMAKE_SOURCE_DIR}"
+)
 
 # C++ Compiler options
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
-# Add imgui source dir to our include path
-target_include_directories(${PROJECT_NAME} PRIVATE ${imgui_SOURCE_DIR})
+# --- LINK LIBRARIES ---
+target_link_libraries(${PROJECT_NAME} PRIVATE glfw OpenGL::GL glm::glm)
 
-# --- 5. LINK LIBRARIES ---
-target_link_libraries(${PROJECT_NAME} glfw opengl32 glm::glm)
+# Cocoa frameworks needed by GLFW on macOS are linked automatically by
+# the GLFW target. Nothing extra needed here.

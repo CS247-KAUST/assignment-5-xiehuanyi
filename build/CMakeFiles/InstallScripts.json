@@ -1,0 +1,12 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/cmake_install.cmake",
+		"/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glfw-build/cmake_install.cmake",
+		"/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glfw-build/src/cmake_install.cmake",
+		"/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glfw-build/docs/cmake_install.cmake",
+		"/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glm-build/cmake_install.cmake",
+		"/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glm-build/glm/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

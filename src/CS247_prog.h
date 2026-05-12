@@ -10,9 +10,12 @@
 #include <cassert>
 #include <vector>
 #include <cmath>
+#include <algorithm>
+#include <limits>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 // framework includes
@@ -24,7 +27,7 @@
 // Structures //
 ////////////////
 
-// window size
+// Initial window size; resized to match the dataset upon load.
 const unsigned int gWindowWidth = 512;
 const unsigned int gWindowHeight = 512;
 
@@ -36,8 +39,42 @@ bool en_pathline;
 
 int sampling_rate;
 float dt;
+float path_time_scale;   // pathline time-advance per spatial step (decouples t from xy)
 
+// Integration method: 0 = Euler, 1 = RK2, 2 = RK4
+int integ_method;
 
+// Colormap: 0 = off (grayscale), 1 = rainbow, 2 = cool-warm
+int colormap_mode;
+float blend_factor;
+
+// Glyph appearance
+bool length_by_speed;
+
+// Integration parameters
+float vec_norm;        // normalization factor: max |v| over all timesteps
+float min_vec_mag;     // stop if |v|/vec_norm <= this
+float max_acc_length;  // max accumulated path length (grid units)
+int   max_steps;
+
+// Rake (bonus)
+int  rake_count;
+bool rake_horizontal;
+
+// Persistent seeded paths
+struct StreamlineRec {
+    int seed_x, seed_y;
+    std::vector<glm::vec2> pts;   // grid coords
+    glm::vec3 color;
+};
+struct PathlineRec {
+    int seed_x, seed_y;
+    int seed_t;
+    std::vector<glm::vec2> pts;   // grid coords
+    glm::vec3 color;
+};
+std::vector<StreamlineRec> streamlines;
+std::vector<PathlineRec>   pathlines;
 
 
 //////////////////////
@@ -49,10 +86,9 @@ float dt;
 // Global variables //
 //////////////////////
 
-// Handle of the window we're rendering to
 static GLFWwindow* window;
 
-char bmModifiers;	// keyboard modifiers (e.g. ctrl,...)
+char bmModifiers;
 
 int clearColor;
 
@@ -68,13 +104,13 @@ float* scalar_bounds;
 GLuint scalar_field_texture;
 
 int num_scalar_fields;
-int num_timesteps; //stores number of time steps
+int num_timesteps;
 
 int loaded_file;
 int loaded_timestep;
 float timestep;
 
-int view_width, view_height; // height and width of entire view
+int view_width, view_height;
 
 GLuint displayList_idx;
 
@@ -85,10 +121,12 @@ int toggle_xy;
 ////////////////
 
 void drawGlyphs();
+void drawStreamlines();
+void drawPathlines();
 
-void computeStreamline(int x, int y);
-
-void computePathline(int x, int y, int t);
+void seedStreamline(int sx, int sy);
+void seedPathline(int sx, int sy);
+void recomputeAllStreamlines();
 
 void loadNextTimestep( void );
 
@@ -100,18 +138,17 @@ void initGL( void );
 
 void reset_rendering_props( void );
 
-// TODO: define data arrays, VAO and VBO
-// Hint: you need one for the glyphs, streamlines, pathlines
-
-// TODO: define colormap variables
-// Hint: you need a colormap mode (off/rainbow/cool-warm) and a blend factor
-
-// make quad to load texture to
+// Quad VBO for the textured background
 VBOQuad quad;
 
-// GLSL
+// Shader programs: textured colormapped quad + simple line shader for overlays
 GLSLProgram vectorProgram;
+GLSLProgram lineProgram;
 glm::mat4 model;
+
+// Dynamic line VAO/VBO used for glyphs/streamlines/pathlines
+GLuint lineVAO = 0;
+GLuint lineVBO = 0;
 
 
 #endif //CS247_PROG_H

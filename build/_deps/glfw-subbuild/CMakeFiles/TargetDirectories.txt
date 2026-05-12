@@ -1,0 +1,3 @@
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate.dir
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glfw-subbuild/CMakeFiles/edit_cache.dir
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glfw-subbuild/CMakeFiles/rebuild_cache.dir

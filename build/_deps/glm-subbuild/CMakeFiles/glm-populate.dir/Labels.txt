@@ -1,0 +1,14 @@
+# Target labels
+ glm-populate
+# Source files and their labels
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glm-subbuild/CMakeFiles/glm-populate
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glm-subbuild/CMakeFiles/glm-populate.rule
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glm-subbuild/CMakeFiles/glm-populate-complete.rule
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-build.rule
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-configure.rule
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-download.rule
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-install.rule
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-mkdir.rule
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-patch.rule
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-test.rule
+/Users/xieh0a/Downloads/kaust/Courses/cs247-scitific-visualization/assignment-5-xiehuanyi/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-update.rule
